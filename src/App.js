@@ -17,6 +17,16 @@ function App() {
   }, []);
 
   const options = {
+    colors: ["#E74C3C","#3498DB"],
+    stroke: {
+      curve: 'straight',
+      width: 1.5,
+    },
+    legend: {
+      labels: {
+        colors: "#fff"
+      }
+    },
     chart: {
       type: 'area',
       stacked: false,
@@ -48,7 +58,7 @@ function App() {
     },
     yaxis: {
       title: {
-        text: 'Jumlah Kasus Baru',
+        text: 'Jumlah',
         style: {
           color: "#fff"
         }
@@ -77,16 +87,22 @@ function App() {
     },
   }
   
-  const series = [{
-    name: 'Jumlah Kasus Baru',
-    data: chartData.map(res => res.jumlahKasusBaruperHari)
-  }]
+  const series = [
+    {
+      name: 'Jumlah Kasus Baru',
+      data: chartData.map(res => res.jumlahKasusBaruperHari)
+    },
+    {
+      name: 'Jumlah Sembuh',
+      data: chartData.map(res => res.jumlahKasusSembuhperHari)
+    }
+  ]
 
   return (
     <div className="App">
       <header className="App-header">
         <div>
-          <Typography variant="h5" style={{color:"#fff"}}>Perkembangan Kasus Baru COVID-19</Typography>
+          <Typography variant="h5" style={{color:"#fff"}}>Perkembangan COVID-19 Indonesia</Typography>
           <Chart
             options={options}
             series={series}
